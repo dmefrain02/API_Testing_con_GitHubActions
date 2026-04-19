@@ -22,6 +22,15 @@ jobs:
 
       - name: Install Newman-Reporter-HTML-Extra
         run: npm install -g newman-reporter-htmlextra
+
+      - name: Crear Carpeta Reportes
+        run: mkdir -p reports
         
       - name: Run API tests
         run: newman run tests/Collection.json -e tests/Enviroments.json -r htmlextra --reporter-htmlextra-export reports/report_html-apis-githubactions.html
+
+      - name: Reporte HTML
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-report
+          path: reports/report_html-apis-githubactions.html
