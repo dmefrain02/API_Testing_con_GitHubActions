@@ -39,9 +39,8 @@ Descripción de alto nivel de cómo está organizado el framework:
   📌 La versión es: **1.0.0**  
 
 # Licencia
-![GitHub License](https://github.com/dmefrain02/API_Testing_con_GitHubActions) </br>
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 Este repositorio para ejecutar APIs de manera automatizada se encuentra bajo licencia de uso MIT.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) </br>
 
 # Autor
 **Ing. en Sistemas Efraín Castañeda Delgado, Costa Rica**
