@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "12bf8b52-c99d-4bb1-aa49-032ccb060144",
+		"name": "Run Newman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13365320"
+	},
+	"item": [
+		{
+			"name": "Crear Mascota - Validacion JSON Schema",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.variables.set(\"id\",pm.variables.replaceIn('{{$randomInt}}'))"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.variables.get(\"id\"))\r",
+							"var responseData=pm.response.json();\r",
+							"pm.environment.set(\"id\", responseData.id);\r",
+							"console.log(responseData.id);\r",
+							"\r",
+							"const esquema_response = {\r",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\r",
+							"  \"title\": \"Generated schema for Root\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\r",
+							"      \"type\": \"number\"\r",
+							"    },\r",
+							"    \"category\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"number\"\r",
+							"        },\r",
+							"        \"name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"name\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"photoUrls\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": {\r",
+							"        \"type\": \"string\"\r",
+							"      }\r",
+							"    },\r",
+							"    \"tags\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": {\r",
+							"        \"type\": \"object\",\r",
+							"        \"properties\": {\r",
+							"          \"id\": {\r",
+							"            \"type\": \"number\"\r",
+							"          },\r",
+							"          \"name\": {\r",
+							"            \"type\": \"string\"\r",
+							"          }\r",
+							"        },\r",
+							"        \"required\": [\r",
+							"          \"id\",\r",
+							"          \"name\"\r",
+							"        ]\r",
+							"      }\r",
+							"    },\r",
+							"    \"status\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"id\",\r",
+							"    \"category\",\r",
+							"    \"name\",\r",
+							"    \"photoUrls\",\r",
+							"    \"tags\",\r",
+							"    \"status\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test('Validacion del JSON Schema del JSON Response',function(){\r",
+							"    pm.response.to.have.jsonSchema(esquema_response);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{id}},\r\n  \"category\": {\r\n    \"id\": 25,\r\n    \"name\": \"dogs\"\r\n  },\r\n  \"name\": {{name}},\r\n  \"photoUrls\": [\r\n    \"ninguna\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": {{id}},\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear Mascota - Validacion JSON Schema",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{id}},\r\n  \"category\": {\r\n    \"id\": 25,\r\n    \"name\": \"dogs\"\r\n  },\r\n  \"name\": {{name}},\r\n  \"photoUrls\": [\r\n    \"ninguna\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": {{id}},\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_pet_store}}pet",
+							"host": [
+								"{{url_base_pet_store}}pet"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 Jan 2025 15:53:45 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, DELETE, PUT"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, api_key, Authorization"
+						},
+						{
+							"key": "Server",
+							"value": "Jetty(9.2.9.v20150224)"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 888,\n    \"category\": {\n        \"id\": 25,\n        \"name\": \"dogs\"\n    },\n    \"name\": \"birds 25\",\n    \"photoUrls\": [\n        \"ninguna\"\n    ],\n    \"tags\": [\n        {\n            \"id\": 888,\n            \"name\": \"string\"\n        }\n    ],\n    \"status\": \"available\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear Mascota - Validacion Test",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.variables.set(\"id\",pm.variables.replaceIn('{{$randomInt}}'))"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const esquema_response = {\r",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\r",
+							"  \"title\": \"Generated schema for Root\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\r",
+							"      \"type\": \"number\"\r",
+							"    },\r",
+							"    \"category\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"number\"\r",
+							"        },\r",
+							"        \"name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"name\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"photoUrls\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": {\r",
+							"        \"type\": \"string\"\r",
+							"      }\r",
+							"    },\r",
+							"    \"tags\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": {\r",
+							"        \"type\": \"object\",\r",
+							"        \"properties\": {\r",
+							"          \"id\": {\r",
+							"            \"type\": \"number\"\r",
+							"          },\r",
+							"          \"name\": {\r",
+							"            \"type\": \"string\"\r",
+							"          }\r",
+							"        },\r",
+							"        \"required\": [\r",
+							"          \"id\",\r",
+							"          \"name\"\r",
+							"        ]\r",
+							"      }\r",
+							"    },\r",
+							"    \"status\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"id\",\r",
+							"    \"category\",\r",
+							"    \"name\",\r",
+							"    \"photoUrls\",\r",
+							"    \"tags\",\r",
+							"    \"status\"\r",
+							"  ]\r",
+							"};\r",
+							"pm.test('Validacion del JSON Schema del JSON Response',function(){\r",
+							"    pm.response.to.have.jsonSchema(esquema_response);\r",
+							"});\r",
+							"//TEST\r",
+							"const responseData = pm.response.json();\r",
+							"pm.test(\"Validar status code 200 \", ()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"    //pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"pm.test('Validar valor campo Id',()=>{\r",
+							"    pm.environment.set(\"id\",responseData.id);\r",
+							"    console.log(responseData.id);\r",
+							"    pm.expect(responseData.id).to.eql(888);\r",
+							"});\r",
+							"pm.test('Validar valor campo Name',()=>{\r",
+							"    console.log(responseData.category.name);\r",
+							"    pm.expect(responseData.category.name).to.eql('dogs');\r",
+							"});\r",
+							"pm.test('Validar multiples status code',()=>{\r",
+							"    console.log(pm.response.code);\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);\r",
+							"});\r",
+							"pm.test('Validar tipo de dato del campo Id',()=>{\r",
+							"    pm.expect(responseData.category.id).to.be.a('number');\r",
+							"});\r",
+							"pm.test('Validar texto del status code',()=>{\r",
+							"    pm.expect(pm.response.to.have.status(\"OK\"));\r",
+							"});\r",
+							"pm.test(\"Validar Header en el response\",()=>{\r",
+							"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+							"});\r",
+							"/*pm.test('Validar cookies en JSONResponse',()=>{\r",
+							"    //pm.expect(pm.cookies.get('').to.eql(''));\r",
+							"});*/\r",
+							"pm.test('Validar tiempo de respuesta en 2000ms', ()=>{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test('Validar True en el request',()=>{\r",
+							"    pm.expect(true).to.eql(true);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{id}},\r\n  \"category\": {\r\n    \"id\": 25,\r\n    \"name\": \"dogs\"\r\n  },\r\n  \"name\": {{name}},\r\n  \"photoUrls\": [\r\n    \"ninguna\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": {{id}},\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear Mascota - Validacion JSON Schema",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{id}},\r\n  \"category\": {\r\n    \"id\": 25,\r\n    \"name\": \"dogs\"\r\n  },\r\n  \"name\": {{name}},\r\n  \"photoUrls\": [\r\n    \"ninguna\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": {{id}},\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_pet_store}}pet",
+							"host": [
+								"{{url_base_pet_store}}pet"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 Jan 2025 15:53:45 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, DELETE, PUT"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, api_key, Authorization"
+						},
+						{
+							"key": "Server",
+							"value": "Jetty(9.2.9.v20150224)"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 888,\n    \"category\": {\n        \"id\": 25,\n        \"name\": \"dogs\"\n    },\n    \"name\": \"birds 25\",\n    \"photoUrls\": [\n        \"ninguna\"\n    ],\n    \"tags\": [\n        {\n            \"id\": 888,\n            \"name\": \"string\"\n        }\n    ],\n    \"status\": \"available\"\n}"
+				}
+			]
+		}
+	]
+}
