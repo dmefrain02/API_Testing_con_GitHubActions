@@ -19,9 +19,6 @@ jobs:
 
       - name: Install Newman
         run: npm install -g newman
-
-      - name: Install Newman-Reporter-HTML-Extra
-        run: npm install -g newman-reporter-htmlextra
-
+        
       - name: Run API tests
-        run: newman run ../../tests/Collection.json -e tests/Enviroments.json -r htmlextra --reporter-htmlextra-export ../../reports/report_html-apis-githubactions.html
+        run: newman run tests/Collection.json -e tests/Enviroments.json -r
