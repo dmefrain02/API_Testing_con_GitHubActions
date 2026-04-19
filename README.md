@@ -21,11 +21,10 @@ Este repositorio permite ejecutar llamados a APIs mediante el uso de la librerí
 
 # Arquitectura
 Descripción de alto nivel de cómo está organizado el framework:
-| Ruta                               | Descripción                                                                                                   |
-|------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `/tests`                           | Carpeta donde se colocan los archivos JSON de la collection, enviroment y archivos csv necesarios             |
-|                                    | para ejecutar los llamados                                                                                    |
-|------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| Ruta                               | Descripción                                                                                                                  |
+|------------------------------------|----------------------------------------------------------------------------------------------------------------------------- |
+| `/tests`                           | Carpeta donde se colocan los archivos JSON de la collection, enviroment y archivos csv necesarios para ejecutar los llamados |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 
 # Tecnologías
 - Postman
